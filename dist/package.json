@@ -1,0 +1,145 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "badger",
+  "title": "Badger",
+  "description": "Show the macOS Dock badge counts in the menu bar.",
+  "author": "Boboon",
+  "license": "MIT",
+  "icon": "extension-icon.png",
+  "scripts": {
+    "dev": "ray develop",
+    "build": "ray build --output dist && npm run sync",
+    "sync": "rsync -rti ~/.config/raycast/extensions/badger/ dist"
+  },
+  "dependencies": {
+    "@raycast/api": "^1.102.3",
+    "@raycast/utils": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "typescript": "^5.9.2"
+  },
+  "commands": [
+    {
+      "name": "add",
+      "title": "Add Badge",
+      "description": "Add a new application badge to the menu bar.",
+      "mode": "view"
+    },
+    {
+      "name": "badges",
+      "title": "Menu Bar Badges",
+      "description": "Show the configured application badges in the menu bar.",
+      "mode": "menu-bar",
+      "interval": "10s"
+    },
+    {
+      "name": "search",
+      "title": "Search Badges",
+      "description": "Search for and manage application badges displayed in the menu bar.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "showTotal",
+      "label": "Show the total count",
+      "description": "When one or more applications have badges, the total is displayed next to the menu bar icon.",
+      "type": "checkbox",
+      "default": true,
+      "required": false
+    },
+    {
+      "name": "defaultColor",
+      "title": "Icon Color",
+      "description": "Choose the color of the menu bar icon when no applications have badges.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "Text",
+          "value": "raycast-primary-text"
+        },
+        {
+          "title": "Muted",
+          "value": "raycast-secondary-text"
+        },
+        {
+          "title": "Blue",
+          "value": "raycast-blue"
+        },
+        {
+          "title": "Green",
+          "value": "raycast-green"
+        },
+        {
+          "title": "Magenta",
+          "value": "raycast-magenta"
+        },
+        {
+          "title": "Orange",
+          "value": "raycast-orange"
+        },
+        {
+          "title": "Purple",
+          "value": "raycast-purple"
+        },
+        {
+          "title": "Red",
+          "value": "raycast-red"
+        },
+        {
+          "title": "Yellow",
+          "value": "raycast-yellow"
+        }
+      ],
+      "default": "raycast-primary-text",
+      "required": false
+    },
+    {
+      "name": "activeColor",
+      "title": "Active Icon Color",
+      "description": "Choose the color of the menu bar icon when one or more applications have badges.",
+      "type": "dropdown",
+      "data": [
+        {
+          "title": "Text",
+          "value": "raycast-primary-text"
+        },
+        {
+          "title": "Muted",
+          "value": "raycast-secondary-text"
+        },
+        {
+          "title": "Blue",
+          "value": "raycast-blue"
+        },
+        {
+          "title": "Green",
+          "value": "raycast-green"
+        },
+        {
+          "title": "Magenta",
+          "value": "raycast-magenta"
+        },
+        {
+          "title": "Orange",
+          "value": "raycast-orange"
+        },
+        {
+          "title": "Purple",
+          "value": "raycast-purple"
+        },
+        {
+          "title": "Red",
+          "value": "raycast-red"
+        },
+        {
+          "title": "Yellow",
+          "value": "raycast-yellow"
+        }
+      ],
+      "default": "raycast-orange",
+      "required": false
+    }
+  ]
+}
