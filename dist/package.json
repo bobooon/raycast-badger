@@ -12,11 +12,11 @@
     "sync": "rsync -rti ~/.config/raycast/extensions/badger/ dist"
   },
   "dependencies": {
-    "@raycast/api": "^1.102.3",
-    "@raycast/utils": "^2.2.0"
+    "@raycast/api": "^1.102.5",
+    "@raycast/utils": "^2.2.1"
   },
   "devDependencies": {
-    "@types/react": "^19.1.9",
+    "@types/react": "^19.1.10",
     "typescript": "^5.9.2"
   },
   "commands": [
