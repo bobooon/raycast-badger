@@ -16,7 +16,7 @@
     "@raycast/utils": "^2.2.1"
   },
   "devDependencies": {
-    "@types/react": "^19.1.10",
+    "@types/react": "^19.1.11",
     "typescript": "^5.9.2"
   },
   "commands": [
