@@ -2,6 +2,7 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "badger",
   "title": "Badger",
+  "type": "module",
   "description": "Show the macOS Dock badge counts in the menu bar.",
   "author": "Boboon",
   "license": "MIT",
@@ -16,6 +17,9 @@
     "@raycast/utils": "^2.2.1"
   },
   "devDependencies": {
+    "@tsconfig/node-ts": "^23.6.1",
+    "@tsconfig/node24": "^24.0.1",
+    "@tsconfig/recommended": "^1.0.10",
     "@types/react": "^19.1.12",
     "typescript": "^5.9.2"
   },

@@ -504,7 +504,7 @@ async function catchError(error) {
 
 // src/utils/scripts.ts
 var import_node_fs = require("node:fs");
-var import_node_path = __toESM(require("node:path"));
+var import_node_path = __toESM(require("node:path"), 1);
 var import_api2 = require("@raycast/api");
 var assets = import_node_path.default.join(import_api2.environment.assetsPath, "scripts");
 function scripts() {
