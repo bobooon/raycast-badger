@@ -13,7 +13,7 @@
     "sync": "rsync -rti ~/.config/raycast/extensions/badger/ dist"
   },
   "dependencies": {
-    "@raycast/api": "^1.103.1",
+    "@raycast/api": "^1.103.2",
     "@raycast/utils": "^2.2.1"
   },
   "devDependencies": {
