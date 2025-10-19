@@ -12,15 +12,15 @@
     "sync": "rsync -rti ~/.config/raycast/extensions/badger/ dist"
   },
   "dependencies": {
-    "@raycast/api": "^1.103.2",
+    "@raycast/api": "^1.103.3",
     "@raycast/utils": "^2.2.1"
   },
   "devDependencies": {
     "@tsconfig/node-ts": "^23.6.1",
     "@tsconfig/node24": "^24.0.1",
     "@tsconfig/recommended": "^1.0.10",
-    "@types/react": "^19.1.15",
-    "typescript": "^5.9.2"
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3"
   },
   "commands": [
     {
