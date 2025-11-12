@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "badger",
-  "title": "Badger",
+  "name": "badges",
+  "title": "Badges",
   "type": "module",
   "description": "Show the macOS Dock badge counts in the menu bar.",
   "author": "Boboon",
@@ -10,10 +10,10 @@
   "scripts": {
     "dev": "ray develop",
     "build": "ray build --output dist && npm run sync",
-    "sync": "rsync -rti ~/.config/raycast/extensions/badger/ dist"
+    "sync": "rsync -rti ~/.config/raycast/extensions/badges/ dist"
   },
   "dependencies": {
-    "@raycast/api": "^1.103.5",
+    "@raycast/api": "^1.103.6",
     "@raycast/utils": "^2.2.2"
   },
   "devDependencies": {
@@ -23,40 +23,27 @@
     "@types/react": "^19.2.2",
     "typescript": "^5.9.3"
   },
+  "platforms": ["macOS"],
   "commands": [
     {
-      "name": "add",
-      "title": "Add Badge",
-      "description": "Add a new application badge to the menu bar.",
+      "name": "manage",
+      "title": "Manage Badges",
+      "description": "Manage application badges.",
       "mode": "view"
     },
     {
-      "name": "badges",
+      "name": "menu",
       "title": "Menu Bar Badges",
-      "description": "Show the configured application badges in the menu bar.",
+      "description": "Show application badges in the menu bar.",
       "mode": "menu-bar",
       "interval": "10s"
-    },
-    {
-      "name": "search",
-      "title": "Search Badges",
-      "description": "Search for and manage application badges displayed in the menu bar.",
-      "mode": "view"
     }
   ],
   "preferences": [
     {
-      "name": "showTotal",
-      "label": "Show the total count",
-      "description": "When one or more applications have badges, the total is displayed next to the menu bar icon.",
-      "type": "checkbox",
-      "default": true,
-      "required": false
-    },
-    {
-      "name": "defaultColor",
-      "title": "Icon Color",
-      "description": "Choose the color of the menu bar icon when no applications have badges.",
+      "name": "color",
+      "title": "Color",
+      "description": "Color of the menu bar icon when no applications have badges.",
       "type": "dropdown",
       "data": [
         {
@@ -101,8 +88,8 @@
     },
     {
       "name": "activeColor",
-      "title": "Active Icon Color",
-      "description": "Choose the color of the menu bar icon when one or more applications have badges.",
+      "title": "Active Color",
+      "description": "Color of the menu bar icon when one or more applications have badges.",
       "type": "dropdown",
       "data": [
         {

@@ -1,47 +1,52 @@
-import { getApplications, getPreferenceValues, LocalStorage } from '@raycast/api'
+import type { Application } from '@raycast/api'
+import { getApplications, LocalStorage } from '@raycast/api'
 
-export default function storage() {}
-
-storage.getPreferences = async (): Promise<Preferences> => getPreferenceValues()
-
-storage.getBadges = async () => {
-  const apps = await getApplications()
-  const badges = JSON.parse((await LocalStorage.getItem('badges')) || '{}') as BadgerList
-
-  Object.entries(badges).forEach(([bundleId, badge]) => {
-    const app = apps.filter(app => app.bundleId === bundleId).pop()
-    if (!app) {
-      // Raycast is not aware of the application.
-      delete badges[bundleId]
-      return
-    }
-    badge.app = app
-    badge.status = { count: 0, indeterminate: false }
-  })
-
-  return badges
+export interface BadgeApplication extends Application {
+  bundleId: string
 }
 
-storage.sortBadges = (badges: BadgerList) => Object.values(badges)
-  .sort((a, b) => a.app.name.localeCompare(
-    b.app.name,
-    Intl.DateTimeFormat().resolvedOptions().locale,
-    { sensitivity: 'base' },
+export interface Badge {
+  app: BadgeApplication
+}
+
+const locale = Intl.DateTimeFormat().resolvedOptions().locale
+
+export async function getApps() {
+  return (await getApplications())
+    .filter((app): app is BadgeApplication => typeof app.bundleId === 'string')
+    .sort((a, b) => a.name.localeCompare(b.name, locale, { sensitivity: 'base' }))
+}
+
+export async function getStorage() {
+  const apps = await getApps()
+  const bundleIds = new Set(apps.map(app => app.bundleId))
+
+  try {
+    return (JSON.parse((await LocalStorage.getItem('badges')) || '[]') as Badge[])
+      .filter(badge => bundleIds.has(badge.app.bundleId))
+  }
+  catch {
+    return []
+  }
+}
+
+async function setStorage(badges: Badge[]) {
+  await LocalStorage.setItem('badges', JSON.stringify(
+    badges.sort((a, b) => a.app.name.localeCompare(b.app.name, locale, { sensitivity: 'base' })),
   ))
-
-storage.saveBadge = async (badge: Badger) => {
-  const badges = await storage.getBadges()
-  badges[badge.bundleId] = badge
-  await LocalStorage.setItem('badges', JSON.stringify(badges))
 }
 
-storage.deleteBadge = async (badge: Badger) => {
-  const badges = await storage.getBadges()
-  if (!badges[badge.bundleId])
+export async function addBadge(bundleId: string) {
+  const app = (await getApps()).find(app => app.bundleId === bundleId)
+  const badges = await getStorage()
+
+  if (!app || badges.some(badge => badge.app.bundleId === bundleId))
     return
 
-  delete badges[badge.bundleId]
-  await LocalStorage.setItem('badges', JSON.stringify(badges))
+  badges.push({ app })
+  await setStorage(badges)
 }
 
-storage.deleteAllBadges = async () => LocalStorage.removeItem('badges')
+export async function deleteBadge(bundleId: string) {
+  await setStorage((await getStorage()).filter(badge => badge.app.bundleId !== bundleId))
+}
