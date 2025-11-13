@@ -19,11 +19,13 @@
   "devDependencies": {
     "@tsconfig/node-ts": "^23.6.1",
     "@tsconfig/node24": "^24.0.1",
-    "@tsconfig/recommended": "^1.0.11",
-    "@types/react": "^19.2.2",
+    "@tsconfig/recommended": "^1.0.12",
+    "@types/react": "^19.2.4",
     "typescript": "^5.9.3"
   },
-  "platforms": ["macOS"],
+  "platforms": [
+    "macOS"
+  ],
   "commands": [
     {
       "name": "manage",
